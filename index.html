@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live. Learn. Adapt. – Minor Changes, Major Impact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2d5016;
+            --secondary: #6b8e23;
+            --accent: #d4a574;
+            --light: #f5f3ed;
+            --dark: #1a1a1a;
+            --cream: #faf8f3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: 
+                radial-gradient(circle at 20% 50%, var(--secondary) 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, var(--primary) 1px, transparent 1px);
+            background-size: 50px 50px, 70px 70px;
+            animation: drift 60s infinite linear;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: headerPattern 40s linear infinite;
+        }
+
+        @keyframes headerPattern {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            font-weight: 500;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--light);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 0.8s ease-out 0.4s backwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        nav a:hover::before {
+            left: 0;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(109, 142, 35, 0.1) 0%, rgba(45, 80, 22, 0.1) 100%);
+            border-radius: 20px;
+            padding: 4rem 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out 0.6s backwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .hero::before {
+            content: '🌱';
+            position: absolute;
+            font-size: 15rem;
+            right: -3rem;
+            top: -3rem;
+            opacity: 0.05;
+            transform: rotate(-15deg);
+        }
+
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(109, 142, 35, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .hero .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .hero .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(109, 142, 35, 0.4);
+        }
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .content-section:nth-child(1) { animation-delay: 0.7s; }
+        .content-section:nth-child(2) { animation-delay: 0.8s; }
+        .content-section:nth-child(3) { animation-delay: 0.9s; }
+        .content-section:nth-child(4) { animation-delay: 1s; }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .content-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .content-section h3::before {
+            content: '';
+            width: 5px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--secondary), var(--accent));
+            border-radius: 10px;
+        }
+
+        .content-section p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            color: #333;
+        }
+
+        .content-section a {
+            color: var(--secondary);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .content-section a:hover {
+            border-bottom-color: var(--secondary);
+        }
+
+        /* Documentary Links */
+        .documentary-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .doc-link {
+            flex: 1;
+            min-width: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .doc-link:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* App Callout */
+        .app-callout {
+            background: linear-gradient(135deg, var(--accent) 0%, #c89b68 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(212, 165, 116, 0.3);
+        }
+
+        .app-callout h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero {
+                padding: 2.5rem 2rem;
+            }
+
+            .content-section {
+                padding: 2rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            .documentary-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <header>
+        <h1 class="logo">Live. Learn. Adapt.</h1>
+        <p class="tagline">Minor changes with a major impact</p>
+    </header>
+
+    <nav>
+        <a href="#protein">Protein Guide</a>
+        <a href="#getting-started">Getting Started</a>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="container">
+        <section class="hero" id="protein">
+            <h2>Where do I get my protein?</h2>
+            <p style="font-size: 1.15rem; margin-bottom: 1.5rem;">The question everyone asks. We've got you covered with a comprehensive guide to the best vegan protein sources.</p>
+            <a href="http://livelearnadapt.com/minor-changes-major-impact" class="cta-button">View Complete Protein Guide →</a>
+        </section>
+
+        <section class="content-section" id="getting-started">
+            <h3>Start Your Journey</h3>
+            <p>The best thing you can do to make your transition into a vegan lifestyle a success is to watch the documentaries <strong>Earthlings</strong> and <strong>Dominion</strong>. Both films will remove any doubt in your mind that you've made the right choice. The truth in each of those documentaries cannot be unseen or forgotten.</p>
+            
+            <div class="documentary-links">
+                <a href="https://youtu.be/aeRHI09niHs" class="doc-link" target="_blank">Watch Earthlings</a>
+                <a href="https://youtu.be/LQRAfJyEsko" class="doc-link" target="_blank">Watch Dominion</a>
+            </div>
+
+            <p>The second best thing you can do is understand that you simply need to make a few <strong>minor changes to have a major impact</strong>. Being vegan isn't about being perfect. It's about doing your best with the information available and trying to reduce the amount of suffering, pain, and destruction in the world.</p>
+        </section>
+
+        <section class="content-section">
+            <h3>Take It One Step at a Time</h3>
+            <p>For people who are new to a vegan lifestyle, I always recommend trying to limit the amount of change you take on at once. This is especially true when starting to change your diet.</p>
+
+            <div class="app-callout">
+                <h4>📱 Download HappyCow Now</h4>
+                <p>This is your essential companion for finding vegan food anywhere. User-driven, constantly updated, and perfect for travel or eating out. The community is fantastic at keeping it current with pictures, reviews, and new locations.</p>
+                <p style="margin-top: 1rem;"><strong>Pro tip:</strong> Pay the small one-time fee to support the app, and always double-check hours online before visiting a new place!</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h3>A Promise From Experience</h3>
+            <p>As a lifelong meat and potatoes kinda guy, I can assure you that <strong>you will not miss ANY food</strong> while adopting a vegan lifestyle. If you must have a specific food, then by all means eat that food. Just don't allow this one thing to prevent you from being vegan all the other times.</p>
+            <p>After a while of being vegan, I guarantee that you will no longer want to eat that non-vegan dish ever again.</p>
+        </section>
+
+        <section class="content-section" id="philosophy">
+            <h3>My Philosophy</h3>
+            <p>Curious about what drives this lifestyle? Learn more about the principles behind living vegan and why small changes truly create major impacts.</p>
+            <a href="http://livelearnadapt.com/what-does-it-mean">Read my full philosophy →</a>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="http://livelearnadapt.com/minor-changes-major-impact">Protein Guide</a>
+            <a href="http://livelearnadapt.com/what-does-it-mean">Philosophy</a>
+            <a href="http://livelearnadapt.com/contact-me" id="contact">Contact</a>
+        </div>
+        <p>© 2025 Live. Learn. Adapt. • Designed with care for a compassionate world</p>
+    </footer>
+</body>
+</html>
